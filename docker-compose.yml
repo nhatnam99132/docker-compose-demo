@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  reverse-proxy:
+    image: nginx:latest
+    ports:
+      - "83:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - jug-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - jug-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    networks:
+      - jug-network
+    environment:
+      - NODE_ENV=production
+
+networks:
+  jug-network:
+    driver: bridge
