@@ -4,7 +4,7 @@ services:
   reverse-proxy:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "8081:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
@@ -30,6 +30,28 @@ services:
     environment:
       - NODE_ENV=production
 
+  docker-agent:
+    build: ./docker-slave
+    container_name: docker-agent
+    privileged: true
+    user: root
+    networks:
+      - jug-network
+    environment:
+      - JENKINS_URL=http://jenkins-master:8080
+      - JENKINS_AGENT_NAME=docker-agent
+      - JENKINS_SECRET=9ccf1436dfd780c45e37c52e94c9e8cd18a0ca7ba7602ac17873f10645e7e8ed
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins_home:/var/jenkins_home
+    ports:
+      - "83:80"
+    depends_on:
+      - jenkins-master
+
 networks:
   jug-network:
     driver: bridge
+
+volumes:
+  jenkins_home:
