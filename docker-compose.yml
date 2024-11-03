@@ -6,7 +6,7 @@ services:
     ports:
       - "83:80"
     volumes:
-      - .config:/etc/nginx/conf.d
+      - ./config:/etc/nginx/conf.d
     networks:
       - jug-network
 
