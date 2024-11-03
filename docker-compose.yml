@@ -9,6 +9,9 @@ services:
       - ./config:/etc/nginx/conf.d
     networks:
       - jug-network
+    depends_on:
+      - backend
+      - frontend
 
   backend:
     build:
