@@ -10,7 +10,7 @@ This example app shows how to create a Spring Boot API and CRUD (create, read, u
 * [Help](#help)
 * [License](#license)
 
-## Getting Started1
+## Getting Started
 
 To install this example application, run the following commands:
 
