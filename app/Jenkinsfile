@@ -1,25 +1,49 @@
 pipeline {
-    agent { label 'java-builder' } // Specify your agent label
+    agent { label 'java-builder' }
     stages {
-        stage('Checkout') {
+        stage('Clean Workspace') {
             steps {
-                git branch: 'main', url: 'https://github.com/BuntyRaghani/spring-boot-hello-world.git'
+                cleanWs()
             }
         }
-        stage('Build') {
+        stage('Check and Stop Existing Containers') {
             steps {
-                sh 'mvn clean package' // Adjust if you use a different build tool
+                script {
+                    def containerExists = sh(
+                        script: "docker ps -q -f 'ancestor=docker-jug-app-reverse-proxy'",
+                        returnStdout: true
+                    ).trim()
+
+                    if (containerExists) {
+                        sh 'docker-compose down'
+                    }
+                }
             }
         }
-        stage('Archive Artifacts') {
+        stage('Clone Repository') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/nhatnam99132/docker-compose-demo.git']]])
             }
         }
-        stage('Deploy') {
+        stage('Build Docker Compose') {
             steps {
-                sh 'java -jar target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar --server.port=7788'
-                //sh 'mvn spring-boot:run'
+                script {
+                    sh 'docker-compose build'
+                }
+            }
+        }
+        stage('Run Docker Compose') {
+            steps {
+                script {
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+        stage('List Running Containers') {
+            steps {
+                script {
+                    sh 'docker ps'
+                }
             }
         }
     }
