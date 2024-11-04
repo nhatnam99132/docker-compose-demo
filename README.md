@@ -6,7 +6,7 @@ This example app shows how to create a Spring Boot API and CRUD (create, read, u
 **Prerequisites:** [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and [Node.js 16+](https://nodejs.org/)
 
 * [Getting Started](#getting-started)
-* [Links](#links)
+* [Links](#links)1
 * [Help](#help)
 * [License](#license)
 
