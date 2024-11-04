@@ -6,13 +6,13 @@ This example app shows how to create a Spring Boot API and CRUD (create, read, u
 **Prerequisites:** [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) and [Node.js 16+](https://nodejs.org/)
 
 * [Getting Started](#getting-started)
-* [Links](#links)12123
+* [Links](#links)
 * [Help](#help)
-* [License](#license)121
-1112
+* [License](#license)
+
 ## Getting Started
 
-To install this example appli112121111ca11tion, run the following commands:11
+To install this example application, run the following commands:
 
 ```bash
 git clone https://github.com/moksnow/jug-springboot-react.git
