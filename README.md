@@ -8,7 +8,7 @@ This example app shows how to create a Spring Boot API and CRUD (create, read, u
 * [Getting Started](#getting-started)
 * [Links](#links)12123
 * [Help](#help)
-* [License](#license)
+* [License](#license)121
 1112
 ## Getting Started
 
