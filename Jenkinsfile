@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'java-builder' }
+    agent { label 'docker-agent' }
     stages {
         stage('Clean Workspace') {
             steps {
