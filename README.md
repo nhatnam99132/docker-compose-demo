@@ -12,7 +12,7 @@ This example app shows how to create a Spring Boot API and CRUD (create, read, u
 1112
 ## Getting Started
 
-To install this example application, run the following commands:
+To install this example appli111cation, run the following commands:
 
 ```bash
 git clone https://github.com/moksnow/jug-springboot-react.git
